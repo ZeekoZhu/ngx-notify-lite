@@ -1,0 +1,85 @@
+@icon-size: 14px;
+.success {
+    .icon.type {
+        background-image: url("./assets/success.png");
+    }
+
+    .indicator {
+        background: #36b37e;
+    }
+}
+
+.warning {
+    .icon.type {
+        background-image: url("./assets/warning.png");
+    }
+}
+
+.info {
+    .icon.type {
+        background-image: url("./assets/info.png");
+    }
+}
+
+.error {
+    .icon.type {
+        background-image: url("./assets/error.png");
+    }
+}
+
+.container {
+    width: 360px;
+    display: flex;
+    flex-flow: row nowrap;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
+}
+
+.icon-container() {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    flex: 1 0 auto;
+
+    .icon {
+        margin-top: .7em;
+    }
+
+}
+
+.indicator {
+    .icon-container();
+
+    position: relative;
+
+    &:before {
+        display: block;
+        content: ' ';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.message {
+    padding: 8px 1em;
+    flex: 0 1 auto;
+}
+
+
+.action {
+    .icon-container();
+    cursor: pointer;
+}
+
+.icon {
+    height: @icon-size;
+    width: $height;
+    display: block;
+    background-size: cover;
+}
+
+.icon.dismiss {
+    background-image: url("./assets/delete.png");
+}

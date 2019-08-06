@@ -1,30 +1,36 @@
 @icon-size: 14px;
-.success {
+
+.custom-msg(@primary-color, @message-type, @bg-color: lighten(@primary-color, 50%), @font-color: darken(@primary-color, 20%)) {
+    @icon-path: %("./assets/%s.png", @message-type);
     .icon.type {
-        background-image: url("./assets/success.png");
+        background-image: url(@icon-path);
     }
 
     .indicator {
-        background: #36b37e;
+        background: @primary-color;
     }
+
+    .message, .action {
+        background-color: @bg-color;
+        color: @font-color;
+    }
+}
+
+.success {
+    .custom-msg(#36b37e, "success");
 }
 
 .warning {
-    .icon.type {
-        background-image: url("./assets/warning.png");
-    }
+    @primary-color: #ffab00;
+    .custom-msg(@primary-color, "warning");
 }
 
 .info {
-    .icon.type {
-        background-image: url("./assets/info.png");
-    }
+    .custom-msg(#2684ff, "info", white, #505f79);
 }
 
 .error {
-    .icon.type {
-        background-image: url("./assets/error.png");
-    }
+    .custom-msg(#ff5630, "error", tint(#ff5630, 90%));
 }
 
 .container {
@@ -33,7 +39,9 @@
     flex-flow: row nowrap;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 3px 8px;
+    font-family: sans-serif;
+    margin-top: 1em;
 }
 
 .icon-container() {
@@ -43,7 +51,7 @@
     flex: 1 0 auto;
 
     .icon {
-        margin-top: .7em;
+        margin-top: 1em;
     }
 
 }
@@ -63,7 +71,7 @@
 }
 
 .message {
-    padding: 8px 1em;
+    padding: 1em .8em;
     flex: 0 1 auto;
 }
 

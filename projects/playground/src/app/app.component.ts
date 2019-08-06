@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NotificationData } from '../../../notify-lite/src/lib/notification-data';
+import { NotifyCenterService } from "../../../notify-lite/src/lib/notify-center.service";
 
 @Component({
     selector: 'app-root',
@@ -39,6 +40,9 @@ export class AppComponent {
         },
     ];
 
-    constructor() {
+    constructor(private notifyCenter: NotifyCenterService) {
+        for(const item of this.data) {
+            notifyCenter.show(item);
+        }
     }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="data" class="container {{data.type}}"
+<div @containerTrigger *ngIf="data" class="container {{data.type}}"
      (mouseleave)="resume()"
      (mouseenter)="pause()"
      (click)="start()">

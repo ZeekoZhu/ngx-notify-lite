@@ -1,19 +1,55 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { NotificationData } from "../notification-data";
-import { animate, AnimationBuilder, AnimationMetadata, AnimationPlayer, style } from "@angular/animations";
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter, inject,
+    Input, Output,
+    ViewChild,
+    Inject
+} from '@angular/core';
+import { NotificationData, NOTIFY_DATA } from "../notification-data";
+import {
+    animate,
+    AnimationBuilder,
+    AnimationMetadata,
+    AnimationPlayer,
+    style,
+    transition,
+    trigger
+} from "@angular/animations";
 
 @Component({
     selector: 'ngx-default-notify-template',
     templateUrl: './default-notify-template.component.html',
-    styleUrls: ['./default-notify-template.component.less']
+    styleUrls: ['./default-notify-template.component.less'],
+    animations: [
+        trigger('containerTrigger', [
+            transition(':enter', [
+                style({
+                    right: '-400px',
+                    opacity: 0
+                }),
+                animate('200ms ease-in', style({
+                    right: 0,
+                    opacity: 1
+                }))
+            ]),
+            transition(':leave', [
+                animate('200ms ease-in', style({
+                    right: '-400px',
+                    opacity: 0
+                }))
+            ])
+        ])
+    ]
 })
 export class DefaultNotifyTemplateComponent implements AfterViewInit {
-    @Input() data: NotificationData;
     @ViewChild('bar', { static: false }) barRef: ElementRef<HTMLDivElement>;
+    @Output() dismiss = new EventEmitter<NotificationData>();
     private player: AnimationPlayer;
     private started = false;
 
-    constructor(private animationBuilder: AnimationBuilder) {
+    constructor(private animationBuilder: AnimationBuilder, @Inject(NOTIFY_DATA) private data: NotificationData) {
     }
 
     private barAnimation(): AnimationMetadata[] {
@@ -35,13 +71,13 @@ export class DefaultNotifyTemplateComponent implements AfterViewInit {
     }
 
     pause() {
-        if(this.player && this.started) {
+        if (this.player && this.started) {
             this.player.pause();
         }
     }
 
     resume() {
-        if(this.player && this.started) {
+        if (this.player && this.started) {
             this.player.play();
         }
     }

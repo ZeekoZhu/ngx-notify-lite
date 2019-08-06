@@ -9,7 +9,7 @@ import { NotifyLiteModule } from "../../../notify-lite/src/lib/notify-lite.modul
         AppComponent
     ],
     imports: [
-        NotifyLiteModule,
+        NotifyLiteModule.forRoot(),
         BrowserModule
     ],
     providers: [],

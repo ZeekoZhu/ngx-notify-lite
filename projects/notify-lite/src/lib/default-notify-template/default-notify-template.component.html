@@ -1,6 +1,10 @@
-<div *ngIf="data" class="container {{data.type}}">
+<div *ngIf="data" class="container {{data.type}}"
+     (mouseleave)="resume()"
+     (mouseenter)="pause()"
+     (click)="start()">
     <div class="indicator">
         <span class="icon type"></span>
+        <div #bar class="bar"></div>
     </div>
     <div class="message">
         {{data.message}}

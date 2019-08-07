@@ -1,7 +1,33 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <h1>
-        Welcome to {{ title }}!
-    </h1>
+<div class="sample">
+    <div class="row">
+        <label for="msg">Message:
+            <textarea [(ngModel)]="data.message" id="msg"></textarea>
+        </label>
+    </div>
+    <div class="row">
+        <label for="type-success">
+            <input id="type-success" [(ngModel)]="data.type" name="type" value="success"
+                   type="radio"> Success</label>
+        <label for="type-info">
+            <input id="type-info" [(ngModel)]="data.type" name="type" value="info" type="radio"> Info</label>
+        <label for="type-warning">
+            <input id="type-warning" [(ngModel)]="data.type" name="type" value="warning"
+                   type="radio"> Warning</label>
+        <label for="type-error">
+            <input id="type-error" [(ngModel)]="data.type" name="type" value="error" type="radio">
+            Error</label>
+    </div>
+    <div class="row">
+        <label for="auto-dismiss"><input [(ngModel)]="data.autoDismiss" id="auto-dismiss" type="checkbox"> Auto dismiss</label>
+        <label *ngIf="data.autoDismiss" for="dismiss-timeout">Dismiss timeout:
+            <input [(ngModel)]="data.autoDismissTimeout" id="dismiss-timeout" type="number">
+        </label>
+        <label for="pause-on-hover">Pause on hover:
+            <input [(ngModel)]="data.pauseOnHover" type="checkbox"
+                   id="pause-on-hover">
+        </label>
+    </div>
+    <div class="row">
+        <button (click)="notify()">Notify!</button>
+    </div>
 </div>
-<h2>Here are some links to help you start: </h2>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NotifyLiteModule } from "../../../notify-lite/src/lib/notify-lite.module";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -10,7 +11,8 @@ import { NotifyLiteModule } from "../../../notify-lite/src/lib/notify-lite.modul
     ],
     imports: [
         NotifyLiteModule.forRoot(),
-        BrowserModule
+        BrowserModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

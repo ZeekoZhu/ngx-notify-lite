@@ -2,12 +2,10 @@ import {
     AfterViewInit,
     Component,
     ElementRef,
-    EventEmitter, inject,
-    Input, Output,
-    ViewChild,
-    Inject
+    EventEmitter, Input, Output,
+    ViewChild
 } from '@angular/core';
-import { NotificationData, NOTIFY_DATA } from "../notification-data";
+import { NotificationData } from "../notification-data";
 import {
     animate,
     AnimationBuilder,
@@ -17,6 +15,7 @@ import {
     transition,
     trigger
 } from "@angular/animations";
+import { NotificationTemplate } from "./notification-config";
 
 @Component({
     selector: 'ngx-default-notify-template',
@@ -35,7 +34,11 @@ import {
                 }))
             ]),
             transition(':leave', [
-                animate('200ms ease-in', style({
+                style({
+                    right: 0,
+                    opacity: 1
+                }),
+                animate('200ms ease-out', style({
                     right: '-400px',
                     opacity: 0
                 }))
@@ -43,13 +46,14 @@ import {
         ])
     ]
 })
-export class DefaultNotifyTemplateComponent implements AfterViewInit {
+export class DefaultNotifyTemplateComponent implements AfterViewInit, NotificationTemplate {
+    @Input() data: NotificationData;
     @ViewChild('bar', { static: false }) barRef: ElementRef<HTMLDivElement>;
-    @Output() dismiss = new EventEmitter<NotificationData>();
+    @Output() dismiss = new EventEmitter<void>();
     private player: AnimationPlayer;
-    private started = false;
+    started = false;
 
-    constructor(private animationBuilder: AnimationBuilder, @Inject(NOTIFY_DATA) private data: NotificationData) {
+    constructor(private animationBuilder: AnimationBuilder) {
     }
 
     private barAnimation(): AnimationMetadata[] {
@@ -66,6 +70,7 @@ export class DefaultNotifyTemplateComponent implements AfterViewInit {
         this.player.play();
         this.player.onDone(() => {
             this.started = false;
+            this.dismiss.emit();
         });
         this.started = true;
     }
@@ -83,5 +88,6 @@ export class DefaultNotifyTemplateComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.start();
     }
 }

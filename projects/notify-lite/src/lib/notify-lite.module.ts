@@ -5,22 +5,25 @@ import { DefaultNotifyTemplateComponent } from './default-notify-template/defaul
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NotifyCenterService } from "./notify-center.service";
+import { defaultConfig, NGX_NOTIFY_CONFIG } from "./default-notify-template/notification-config";
 
 
 @NgModule({
     declarations: [DefaultNotifyTemplateComponent],
     entryComponents: [DefaultNotifyTemplateComponent],
     imports: [OverlayModule, PortalModule, CommonModule, BrowserAnimationsModule],
-    exports: [
-        DefaultNotifyTemplateComponent
-    ]
+    exports: []
 })
 export class NotifyLiteModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: NotifyLiteModule,
             providers: [
-                NotifyCenterService
+                NotifyCenterService,
+                {
+                    provide: NGX_NOTIFY_CONFIG,
+                    useValue: defaultConfig
+                }
             ]
         }
     }

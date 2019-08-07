@@ -1,15 +1,14 @@
-<div @containerTrigger *ngIf="started && data" class="container {{data.type}}"
-     (mouseleave)="resume()"
-     (mouseenter)="pause()"
-     (click)="start()">
+<div [@show]="show" class="container {{data.type}}"
+     (mouseleave)="onLeave()"
+     (mouseenter)="onHover()">
     <div class="indicator">
         <span class="icon type"></span>
-        <div #bar class="bar"></div>
+        <div *ngIf="data.autoDismiss" #bar class="bar"></div>
     </div>
     <div class="message">
         {{data.message}}
     </div>
     <div class="action">
-        <span class="icon dismiss"></span>
+        <span class="icon dismiss" (click)="stop()"></span>
     </div>
 </div>

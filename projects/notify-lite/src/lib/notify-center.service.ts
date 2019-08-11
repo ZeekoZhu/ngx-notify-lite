@@ -6,11 +6,13 @@ import {
     Injector,
     Renderer2,
     RendererFactory2
-} from "@angular/core";
-import { Overlay, OverlayRef } from "@angular/cdk/overlay";
-import { NotificationData } from "./notification-data";
-import { DomPortalHost, Portal } from "@angular/cdk/portal";
-import { NGX_NOTIFY_CONFIG, NotificationConfig } from "./default-notify-template/notification-config";
+} from '@angular/core';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { NotificationData } from './notification-data';
+import { DomPortalHost, Portal } from '@angular/cdk/portal';
+import { NGX_NOTIFY_CONFIG, NotificationConfig } from './default-notify-template/notification-config';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +20,7 @@ import { NGX_NOTIFY_CONFIG, NotificationConfig } from "./default-notify-template
 export class NotifyCenterService {
     private overlayRef: OverlayRef;
     private renderer: Renderer2;
+    private $clearAll = new Subject();
 
     constructor(
         private overlay: Overlay,
@@ -46,6 +49,10 @@ export class NotifyCenterService {
         );
         const compRef = overlayHost.attach(portal);
         compRef.instance.data = data;
+        this.$clearAll.pipe(takeUntil(compRef.instance.dismissed))
+            .subscribe(() => {
+                compRef.instance.dismiss();
+            });
         compRef.instance.dismissed.subscribe(() => {
             overlayHost.dispose();
         });
@@ -62,5 +69,9 @@ export class NotifyCenterService {
         const portalFactory = actualConfig.portalFactory;
         const portal = portalFactory(this.injector);
         this.attachToOverlay(portal, actualData);
+    }
+
+    clearAll() {
+        this.$clearAll.next();
     }
 }

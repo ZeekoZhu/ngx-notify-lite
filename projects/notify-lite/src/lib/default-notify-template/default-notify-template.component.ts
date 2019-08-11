@@ -10,10 +10,7 @@ import {
     animate,
     AnimationBuilder,
     AnimationMetadata,
-    AnimationPlayer, state,
-    style,
-    transition,
-    trigger
+    AnimationPlayer, style
 } from '@angular/animations';
 import { NotificationTemplate } from './notification-config';
 
@@ -35,7 +32,9 @@ export class DefaultNotifyTemplateComponent implements AfterViewInit, Notificati
     show = true;
     started = true;
 
-    dismiss: () => void;
+    dismiss() {
+        this.stop();
+    }
 
     private barAnimation(): AnimationMetadata[] {
         return [

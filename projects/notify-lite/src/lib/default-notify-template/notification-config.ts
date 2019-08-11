@@ -6,7 +6,8 @@ import { DefaultNotifyTemplateComponent } from './default-notify-template.compon
 export interface NotificationTemplate {
     dismissed: EventEmitter<void>;
     data: NotificationData;
-    dismiss: () => void;
+
+    dismiss(): void;
 }
 
 export type ComponentPortalFactory<TComp extends NotificationTemplate> = (injector: Injector) => ComponentPortal<TComp>;

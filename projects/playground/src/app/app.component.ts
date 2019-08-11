@@ -23,4 +23,8 @@ export class AppComponent {
     notify() {
         this.notifyCenter.show(this.data);
     }
+
+    clearAll() {
+        this.notifyCenter.clearAll();
+    }
 }

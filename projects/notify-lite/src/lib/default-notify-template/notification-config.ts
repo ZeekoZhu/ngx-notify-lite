@@ -1,11 +1,12 @@
-import { EventEmitter, InjectionToken, Injector } from "@angular/core";
-import { ComponentPortal } from "@angular/cdk/portal";
+import { EventEmitter, InjectionToken, Injector } from '@angular/core';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { NotificationData } from '../notification-data';
-import { DefaultNotifyTemplateComponent } from "./default-notify-template.component";
+import { DefaultNotifyTemplateComponent } from './default-notify-template.component';
 
 export interface NotificationTemplate {
-    dismiss: EventEmitter<void>;
+    dismissed: EventEmitter<void>;
     data: NotificationData;
+    dismiss: () => void;
 }
 
 export type ComponentPortalFactory<TComp extends NotificationTemplate> = (injector: Injector) => ComponentPortal<TComp>;

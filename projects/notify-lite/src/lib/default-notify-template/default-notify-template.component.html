@@ -1,4 +1,4 @@
-<div [@show]="show" class="container {{data.type}}"
+<div [ngxSlideInOut]="show" class="container {{data.type}}"
      (mouseleave)="onLeave()"
      (mouseenter)="onHover()">
     <div class="indicator">
@@ -8,7 +8,7 @@
     <div class="message">
         {{data.message}}
     </div>
-    <div class="action">
+    <div class="action" (click)="stop()">
         <span class="icon dismiss" (click)="stop()"></span>
     </div>
 </div>

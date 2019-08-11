@@ -5,7 +5,7 @@ import {
     EventEmitter, Input, Output,
     ViewChild
 } from '@angular/core';
-import { NotificationData } from "../notification-data";
+import { NotificationData } from '../notification-data';
 import {
     animate,
     AnimationBuilder,
@@ -14,55 +14,32 @@ import {
     style,
     transition,
     trigger
-} from "@angular/animations";
-import { NotificationTemplate } from "./notification-config";
+} from '@angular/animations';
+import { NotificationTemplate } from './notification-config';
 
 @Component({
     selector: 'ngx-default-notify-template',
     templateUrl: './default-notify-template.component.html',
     styleUrls: ['./default-notify-template.component.less'],
-    animations: [
-        trigger('show', [
-            state('true',
-                style({
-                    right: 0,
-                    opacity: 1
-                })
-            ),
-            state('false',
-                style({
-                    right: '-400px',
-                    opacity: 0
-                })
-            ),
-            transition('* => true',
-                [
-                    style({
-                        right: '-400px',
-                        opacity: 0
-                    }),
-                    animate('200ms ease-in-out')
-                ]
-            ),
-            transition('true <=> false', animate('200ms ease-in-out'))
-        ]),
-    ]
 })
 
 export class DefaultNotifyTemplateComponent implements AfterViewInit, NotificationTemplate {
-    @Input() data: NotificationData;
-    @ViewChild('bar', { static: false }) barRef: ElementRef<HTMLDivElement>;
-    @Output() dismiss = new EventEmitter<void>();
-    private player: AnimationPlayer;
-    private show = true;
-    started = true;
 
     constructor(private animationBuilder: AnimationBuilder) {
     }
 
+    @Input() data: NotificationData;
+    @ViewChild('bar', { static: false }) barRef: ElementRef<HTMLDivElement>;
+    @Output() dismissed = new EventEmitter<void>();
+    private player: AnimationPlayer;
+    show = true;
+    started = true;
+
+    dismiss: () => void;
+
     private barAnimation(): AnimationMetadata[] {
         return [
-            style({ height: "100%" }),
+            style({ height: '100%' }),
             animate(this.data.autoDismissTimeout, style({ height: 0 }))
         ];
     }
@@ -71,7 +48,7 @@ export class DefaultNotifyTemplateComponent implements AfterViewInit, Notificati
         this.started = false;
         this.show = false;
         setTimeout(() => {
-            this.dismiss.emit();
+            this.dismissed.emit();
         }, 400);
     }
 
@@ -119,3 +96,4 @@ export class DefaultNotifyTemplateComponent implements AfterViewInit, Notificati
         }
     }
 }
+

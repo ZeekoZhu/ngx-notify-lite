@@ -46,7 +46,7 @@ export class NotifyCenterService {
         );
         const compRef = overlayHost.attach(portal);
         compRef.instance.data = data;
-        compRef.instance.dismiss.subscribe(() => {
+        compRef.instance.dismissed.subscribe(() => {
             overlayHost.dispose();
         });
 

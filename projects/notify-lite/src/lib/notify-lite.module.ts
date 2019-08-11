@@ -5,7 +5,7 @@ import { DefaultNotifyTemplateComponent } from './default-notify-template/defaul
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifyCenterService } from './notify-center.service';
-import { defaultConfig, NGX_NOTIFY_CONFIG } from './notification-config';
+import { defaultConfig, NGX_NOTIFY_CONFIG, NotificationConfig } from './notification-config';
 import { SlideInOutDirective } from './directives/slide-in-out.directive';
 import { ActionTemplateComponent } from './action-template/action-template.component';
 
@@ -23,14 +23,14 @@ import { ActionTemplateComponent } from './action-template/action-template.compo
     ]
 })
 export class NotifyLiteModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(config: NotificationConfig): ModuleWithProviders {
         return {
             ngModule: NotifyLiteModule,
             providers: [
                 NotifyCenterService,
                 {
                     provide: NGX_NOTIFY_CONFIG,
-                    useValue: defaultConfig
+                    useValue: { ...defaultConfig, ...config }
                 }
             ]
         };

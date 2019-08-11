@@ -12,7 +12,7 @@ import {
     AnimationMetadata,
     AnimationPlayer, style
 } from '@angular/animations';
-import { NotificationTemplate } from './notification-config';
+import { NotificationTemplate } from '../notification-config';
 
 @Component({
     selector: 'ngx-default-notify-template',

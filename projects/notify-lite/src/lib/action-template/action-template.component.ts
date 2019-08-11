@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { NotificationTemplate } from '../default-notify-template/notification-config';
+import { NotificationTemplate } from '../notification-config';
 import { NotificationData } from '../notification-data';
 
 export interface ActionDefinition {

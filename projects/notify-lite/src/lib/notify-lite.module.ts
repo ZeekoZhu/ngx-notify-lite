@@ -23,7 +23,7 @@ import { ActionTemplateComponent } from './action-template/action-template.compo
     ]
 })
 export class NotifyLiteModule {
-    static forRoot(config: NotificationConfig): ModuleWithProviders {
+    static forRoot(config?: Partial<NotificationConfig>): ModuleWithProviders {
         return {
             ngModule: NotifyLiteModule,
             providers: [

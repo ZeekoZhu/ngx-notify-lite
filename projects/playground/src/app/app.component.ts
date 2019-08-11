@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NotificationData } from '../../../notify-lite/src/lib/notification-data';
-import { NotifyCenterService } from "../../../notify-lite/src/lib/notify-center.service";
+import { NotifyCenterService } from '../../../notify-lite/src/lib/notify-center.service';
+import { ActionDefinition, ActionTemplateComponent } from '../../../notify-lite/src/lib/action-template/action-template.component';
+import { NotificationConfig, useComponentTemplate } from '../../../notify-lite/src/lib/notification-config';
 
 @Component({
     selector: 'app-root',
@@ -17,11 +19,30 @@ export class AppComponent {
             type: 'success'
         };
 
+    bestLanguage: string;
+
     constructor(private notifyCenter: NotifyCenterService) {
     }
 
     notify() {
         this.notifyCenter.show(this.data);
+    }
+
+    actions() {
+        const config: NotificationConfig = {
+            portalFactory: useComponentTemplate(ActionTemplateComponent)
+        };
+
+        const actions: ActionDefinition[] =
+            ['C#', 'PHP', 'JavaScript'].map(x => ({ label: x, callback: () => this.bestLanguage = x }));
+        this.notifyCenter.show({
+            message: 'What is the best programming language?',
+            autoDismiss: false,
+            type: 'info',
+            autoDismissTimeout: 0,
+            pauseOnHover: false,
+            extraData: actions
+        }, config);
     }
 
     clearAll() {

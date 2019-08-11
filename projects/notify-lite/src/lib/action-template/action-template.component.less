@@ -1,0 +1,34 @@
+
+.container {
+    width: calc(380px - 1em);
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: .5em;
+    margin: 1em 0 0 .5em;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.message {
+    margin-bottom: .5em;
+}
+
+.actions {
+    display: flex;
+    flex-flow: row nowrap;
+    .action {
+        background-color: white;
+        border: none;
+        flex: 1 0 auto;
+        color: #2684ff;
+        cursor: pointer;
+        line-height: 2.5em;
+        transition: all 100ms;
+        &:hover {
+            color: white;
+            background-color: #2684ff;
+        }
+    }
+}

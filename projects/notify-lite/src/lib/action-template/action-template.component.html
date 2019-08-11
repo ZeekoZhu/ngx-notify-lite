@@ -1,0 +1,10 @@
+<div [ngxSlideInOut]="show" class="container {{data.type}}">
+    <div class="message">
+        {{data.message}}
+    </div>
+    <div class="actions">
+        <button *ngFor="let action of actions" (click)="handleAction(action)" class="action">
+            {{action.label}}
+        </button>
+    </div>
+</div>

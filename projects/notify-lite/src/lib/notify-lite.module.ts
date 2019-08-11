@@ -5,16 +5,18 @@ import { DefaultNotifyTemplateComponent } from './default-notify-template/defaul
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifyCenterService } from './notify-center.service';
-import { defaultConfig, NGX_NOTIFY_CONFIG } from './default-notify-template/notification-config';
+import { defaultConfig, NGX_NOTIFY_CONFIG } from './notification-config';
 import { SlideInOutDirective } from './directives/slide-in-out.directive';
+import { ActionTemplateComponent } from './action-template/action-template.component';
 
 
 @NgModule({
     declarations: [
         DefaultNotifyTemplateComponent,
-        SlideInOutDirective
+        SlideInOutDirective,
+        ActionTemplateComponent
     ],
-    entryComponents: [DefaultNotifyTemplateComponent],
+    entryComponents: [DefaultNotifyTemplateComponent, ActionTemplateComponent],
     imports: [OverlayModule, PortalModule, CommonModule, BrowserAnimationsModule],
     exports: [
         SlideInOutDirective

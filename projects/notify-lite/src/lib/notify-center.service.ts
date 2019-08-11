@@ -10,7 +10,7 @@ import {
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { NotificationData } from './notification-data';
 import { DomPortalHost, Portal } from '@angular/cdk/portal';
-import { NGX_NOTIFY_CONFIG, NotificationConfig } from './default-notify-template/notification-config';
+import { NGX_NOTIFY_CONFIG, NotificationConfig } from './notification-config';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

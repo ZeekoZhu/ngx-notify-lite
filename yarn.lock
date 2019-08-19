@@ -4737,6 +4737,11 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fneo-async%2Fdownload%2Fneo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha1-rCetpmFn+ohJpq3dg39rGJrSCBw=
 
+ng-mocks@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/ng-mocks/-/ng-mocks-8.1.0.tgz#d00a5e53ae53587f35c68147826590fab71a1658"
+  integrity sha512-/314nyU6UrONCUKfvFRuJPLpNBxqocwJmQBlPy4he5Vueu6gObXjy+KLUlbbENuA7zTeBjp//RA6w/Fa1yQ4Fw==
+
 ng-packagr@^5.1.0:
   version "5.3.0"
   resolved "https://registry.npm.taobao.org/ng-packagr/download/ng-packagr-5.3.0.tgz#92434ca05ecbd1e01fe961a66c8a9a66b095f6fa"

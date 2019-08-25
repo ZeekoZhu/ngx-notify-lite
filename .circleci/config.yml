@@ -1,14 +1,36 @@
 version: 2.1
 jobs:
-  test:
-    docker:
-      - image: 'zeekozhu/aspnetcore-build-yarn:3.0-chromium'
-    steps:
-      - checkout
-      - run: 'yarn test:ci'
   build:
     docker:
       - image: 'zeekozhu/aspnetcore-build-yarn:3.0-chromium'
     steps:
       - checkout
-      - run: 'yarn build'
+      - restore_cache:
+          keys:
+            - npm-cache-v1-{{ checksum "yarn.lock" }}
+      - run: yarn
+      - save_cache:
+          keys:
+            - npm-cache-v1-{{ checksum "yarn.lock" }}
+      - run: yarn build
+  test:
+    docker:
+      - image: 'zeekozhu/aspnetcore-build-yarn:3.0-chromium'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-cache-v1-{{ checksum "yarn.lock" }}
+      - run: yarn
+      - run: yarn run test:ci
+      - restore_cache:
+          keys:
+            - npm-cache-v1-{{ checksum "yarn.lock" }}
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+      - build
+      - test:
+        requires:
+          build

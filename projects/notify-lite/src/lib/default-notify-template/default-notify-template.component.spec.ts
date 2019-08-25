@@ -1,9 +1,10 @@
-import { ComponentFixture, fakeAsync, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
 
 import { DefaultNotifyTemplateComponent } from './default-notify-template.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MockDirective } from 'ng-mocks';
 import { SlideInOutDirective } from '../directives/slide-in-out.directive';
+import createSpy = jasmine.createSpy;
 
 fdescribe('DefaultNotifyTemplateComponent', () => {
     let component: DefaultNotifyTemplateComponent;
@@ -88,5 +89,64 @@ fdescribe('DefaultNotifyTemplateComponent', () => {
             // slide out timeout
             tick(1000);
         }));
+
+        it('should delay dismissed event 400ms', fakeAsync(() => {
+            const callback = createSpy();
+            component.dismissed.subscribe(callback);
+            fixture.detectChanges();
+            flushMicrotasks();
+            expect(component.show).toBe(false);
+            expect(callback).not.toHaveBeenCalled();
+            tick(400);
+            expect(callback).toHaveBeenCalled();
+        }));
+
+        describe('disable pause on hover', () => {
+            beforeEach(() => {
+                component.data = { ...component.data, pauseOnHover: false };
+                spyOn(component, 'pause').and.callThrough();
+                spyOn(component, 'resume').and.callThrough();
+            });
+
+            it('should not pause on hover', fakeAsync(() => {
+                fixture.detectChanges();
+                component.onHover();
+                expect(component.pause).not.toHaveBeenCalled();
+                flushMicrotasks();
+                tick(400);
+            }));
+
+            it('should not resume on leave', fakeAsync(() => {
+                fixture.detectChanges();
+                component.onLeave();
+                expect(component.resume).not.toHaveBeenCalled();
+                flushMicrotasks();
+                tick(400);
+            }));
+        });
+
+        describe('enable pause on hover', () => {
+            beforeEach(() => {
+                component.data = { ...component.data, pauseOnHover: true };
+                spyOn(component, 'pause').and.callThrough();
+                spyOn(component, 'resume').and.callThrough();
+            });
+
+            it('should pause on hover', fakeAsync(() => {
+                fixture.detectChanges();
+                component.onHover();
+                expect(component.pause).toHaveBeenCalled();
+                flushMicrotasks();
+                tick(400);
+            }));
+
+            it('should resume on leave', fakeAsync(() => {
+                fixture.detectChanges();
+                component.onLeave();
+                expect(component.resume).toHaveBeenCalled();
+                flushMicrotasks();
+                tick(400);
+            }));
+        });
     });
 });

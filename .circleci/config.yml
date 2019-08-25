@@ -12,6 +12,8 @@ jobs:
       - save_cache:
           keys:
             - npm-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
       - run: yarn build
   test:
     docker:
@@ -23,9 +25,6 @@ jobs:
             - npm-cache-v1-{{ checksum "yarn.lock" }}
       - run: yarn
       - run: yarn run test:ci
-      - restore_cache:
-          keys:
-            - npm-cache-v1-{{ checksum "yarn.lock" }}
 workflows:
   version: 2
   test_and_build:

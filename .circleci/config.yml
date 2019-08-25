@@ -24,6 +24,8 @@ jobs:
             - npm-cache-v1-{{ checksum "yarn.lock" }}
       - run: yarn
       - run: yarn run test:ci
+      - codecov/upload:
+        file: coverage/notify-lite/lcov.info
 workflows:
   version: 2
   test_and_build:

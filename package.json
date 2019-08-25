@@ -6,7 +6,7 @@
         "start": "ng serve",
         "build": "node ./build.js",
         "test": "ng test notify-lite",
-        "test:ci": "ng test notify-lite --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test notify-lite",
         "lint": "ng lint",
         "e2e": "ng e2e"
     },

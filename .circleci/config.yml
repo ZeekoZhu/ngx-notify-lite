@@ -6,3 +6,9 @@ jobs:
     steps:
       - checkout
       - run: 'yarn test:ci'
+  build:
+    docker:
+      - image: 'zeekozhu/aspnetcore-build-yarn:3.0-chromium'
+    steps:
+      - checkout
+      - run: 'yarn build'

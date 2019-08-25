@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: 'zeekozhu/aspnetcore-build-yarn:3.0-chromium'
     steps:
+      - checkout
       - run:
         name: Unit Test
         command: 'yarn test:ci'

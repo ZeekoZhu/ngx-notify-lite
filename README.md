@@ -1,5 +1,10 @@
 # NgxNotifyLite
 
+[![npm (scoped)](https://img.shields.io/npm/v/@zeeko/notify-lite)](https://www.npmjs.com/package/@zeeko/notify-lite)
+[![CircleCI](https://circleci.com/gh/ZeekoZhu/ngx-notify-lite/tree/master.svg?style=svg)](https://circleci.com/gh/ZeekoZhu/ngx-notify-lite/tree/master)
+[![codecov](https://codecov.io/gh/ZeekoZhu/ngx-notify-lite/branch/master/graph/badge.svg)](https://codecov.io/gh/ZeekoZhu/ngx-notify-lite) 
+
+
 A configurable notification system for angular. 
 
 ## Install

@@ -10,8 +10,7 @@ jobs:
             - npm-cache-v1-{{ checksum "yarn.lock" }}
       - run: yarn
       - save_cache:
-          keys:
-            - npm-cache-v1-{{ checksum "yarn.lock" }}
+          key: npm-cache-v1-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - run: yarn build

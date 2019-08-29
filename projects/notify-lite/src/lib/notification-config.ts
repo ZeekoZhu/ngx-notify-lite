@@ -22,6 +22,6 @@ export const useComponentTemplate = <T extends NotificationTemplate>(compType: C
     (injector: Injector) =>
         new ComponentPortal(compType, null, injector);
 
-export const defaultConfig: NotificationConfig = {
+export const DEFAULT_NOTIFY_CONFIG: NotificationConfig = {
     portalFactory: useComponentTemplate(DefaultNotifyTemplateComponent)
 };

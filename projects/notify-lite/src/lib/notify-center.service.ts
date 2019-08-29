@@ -3,14 +3,14 @@ import {
     ComponentFactoryResolver,
     Inject,
     Injectable,
-    Injector,
+    Injector, Optional,
     Renderer2,
     RendererFactory2
 } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { NotificationData } from './notification-data';
 import { DomPortalHost, Portal } from '@angular/cdk/portal';
-import { NGX_NOTIFY_CONFIG, NotificationConfig } from './notification-config';
+import { DEFAULT_NOTIFY_CONFIG, NGX_NOTIFY_CONFIG, NotificationConfig } from './notification-config';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -20,6 +20,7 @@ import { takeUntil } from 'rxjs/operators';
 export class NotifyCenterService {
     private overlayRef: OverlayRef;
     private renderer: Renderer2;
+    private config: NotificationConfig;
     private $clearAll = new Subject();
 
     constructor(
@@ -28,9 +29,10 @@ export class NotifyCenterService {
         private componentFactoryResolver: ComponentFactoryResolver,
         private appRef: ApplicationRef,
         rendererFactory: RendererFactory2,
-        @Inject(NGX_NOTIFY_CONFIG) private config,
+        @Inject(NGX_NOTIFY_CONFIG) @Optional() config: NotificationConfig,
     ) {
         this.renderer = rendererFactory.createRenderer(null, null);
+        this.config = { ...DEFAULT_NOTIFY_CONFIG, ...config };
     }
 
     private overlayInit() {

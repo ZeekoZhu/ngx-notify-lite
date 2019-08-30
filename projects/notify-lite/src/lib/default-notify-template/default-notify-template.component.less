@@ -1,39 +1,26 @@
 @icon-size: 14px;
+@block: ~".dnt-notify";
 
 .custom-msg(@primary-color, @message-type, @bg-color: lighten(@primary-color, 50%), @font-color: darken(@primary-color, 20%)) {
     @icon-path: %("./assets/%s.png", @message-type);
-    .icon.type {
-        background-image: url(@icon-path);
+    @{block} {
+        &__icon--type {
+            background-image: url(@icon-path);
+        }
+
+        &__indicator {
+            background: @primary-color;
+        }
+
+        &__message, &__action {
+            background-color: @bg-color;
+            color: @font-color;
+        }
     }
-
-    .indicator {
-        background: @primary-color;
-    }
-
-    .message, .action {
-        background-color: @bg-color;
-        color: @font-color;
-    }
 }
 
-.success {
-    .custom-msg(#36b37e, "success");
-}
 
-.warning {
-    @primary-color: #ffab00;
-    .custom-msg(@primary-color, "warning");
-}
-
-.info {
-    .custom-msg(#2684ff, "info", white, #505f79);
-}
-
-.error {
-    .custom-msg(#ff5630, "error", tint(#ff5630, 90%));
-}
-
-.container {
+@{block} {
     width: 360px;
     display: flex;
     flex-flow: row nowrap;
@@ -44,6 +31,58 @@
     margin-top: 1em;
     margin-left: .5em;
     position: relative;
+
+    &--success {
+        .custom-msg(#36b37e, "success");
+    }
+
+    &--warning {
+        @primary-color: #ffab00;
+        .custom-msg(@primary-color, "warning");
+    }
+
+    &--info {
+        .custom-msg(#2684ff, "info", white, #505f79);
+    }
+
+    &--error {
+        .custom-msg(#ff5630, "error", tint(#ff5630, 90%));
+    }
+
+    &__indicator {
+        .icon-container();
+        position: relative;
+    }
+
+    &__bar {
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    &__message {
+        padding: 1em .8em;
+        flex: 0 1 auto;
+    }
+
+    &__action {
+        .icon-container();
+        cursor: pointer;
+    }
+
+    &__icon {
+        height: @icon-size;
+        width: $height;
+        display: block;
+        background-size: cover;
+
+        &--dismiss {
+            background-image: url("./assets/delete.png");
+        }
+    }
 }
 
 .icon-container() {
@@ -52,46 +91,8 @@
     justify-content: center;
     flex: 1 0 auto;
 
-    .icon {
+    @{block}__icon {
         margin-top: 1em;
         z-index: 9;
     }
-
-}
-
-.indicator {
-    .icon-container();
-
-    position: relative;
-
-    .bar {
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.25);
-    }
-}
-
-.message {
-    padding: 1em .8em;
-    flex: 0 1 auto;
-}
-
-
-.action {
-    .icon-container();
-    cursor: pointer;
-}
-
-.icon {
-    height: @icon-size;
-    width: $height;
-    display: block;
-    background-size: cover;
-}
-
-.icon.dismiss {
-    background-image: url("./assets/delete.png");
 }

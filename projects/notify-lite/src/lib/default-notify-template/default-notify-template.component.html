@@ -1,14 +1,14 @@
-<div [ngxSlideInOut]="show" class="container {{data.type}}"
+<div [ngxSlideInOut]="show" class="dnt-notify dnt-notify--{{data.type}}"
      (mouseleave)="onLeave()"
      (mouseenter)="onHover()">
-    <div class="indicator">
-        <span class="icon type"></span>
-        <div *ngIf="data.autoDismiss" #bar class="bar"></div>
+    <div class="dnt-notify__indicator">
+        <span class="dnt-notify__icon dnt-notify__icon--type"></span>
+        <div *ngIf="data.autoDismiss" #bar class="dnt-notify__bar"></div>
     </div>
-    <div class="message">
+    <div class="dnt-notify__message">
         {{data.message}}
     </div>
-    <div class="action" (click)="stop()">
-        <span class="icon dismiss" (click)="stop()"></span>
+    <div class="dnt-notify__action" (click)="stop()">
+        <span class="dnt-notify__icon dnt-notify__icon--dismiss" (click)="stop()"></span>
     </div>
 </div>

@@ -14,9 +14,7 @@ import { DEFAULT_NOTIFY_CONFIG, NGX_NOTIFY_CONFIG, NotificationConfig } from './
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class NotifyCenterService {
     private overlayRef: OverlayRef;
     private renderer: Renderer2;

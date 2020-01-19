@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { NotificationData } from './notification-data';
-import { DomPortalHost, Portal } from '@angular/cdk/portal';
+import { DomPortalOutlet, Portal } from '@angular/cdk/portal';
 import { DEFAULT_NOTIFY_CONFIG, NGX_NOTIFY_CONFIG, NotificationConfig } from './notification-config';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -41,11 +41,11 @@ export class NotifyCenterService {
     private attachToOverlay(portal: Portal<any>, data: NotificationData) {
         const hostPlaceHolder = this.renderer.createElement('div');
         this.overlayRef.overlayElement.appendChild(hostPlaceHolder);
-        const overlayHost = new DomPortalHost(
+        const overlayHost = new DomPortalOutlet(
             hostPlaceHolder,
             this.componentFactoryResolver,
             this.appRef,
-            this.injector
+            this.injector,
         );
         const compRef = overlayHost.attach(portal);
         compRef.instance.data = data;

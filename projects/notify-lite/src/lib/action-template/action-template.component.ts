@@ -18,7 +18,7 @@ export class ActionTemplateComponent implements NotificationTemplate {
     }
 
     @Input() data: NotificationData;
-    @ViewChild('bar', { static: false }) barRef: ElementRef<HTMLDivElement>;
+    @ViewChild('bar') barRef: ElementRef<HTMLDivElement>;
     @Output() dismissed = new EventEmitter<void>();
     show = true;
 

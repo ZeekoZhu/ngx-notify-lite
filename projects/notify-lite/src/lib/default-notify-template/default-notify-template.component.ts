@@ -26,7 +26,7 @@ export class DefaultNotifyTemplateComponent implements AfterViewInit, Notificati
     }
 
     @Input() data: NotificationData;
-    @ViewChild('bar', { static: false }) barRef: ElementRef<HTMLDivElement>;
+    @ViewChild('bar') barRef: ElementRef<HTMLDivElement>;
     @Output() dismissed = new EventEmitter<void>();
     private player: AnimationPlayer;
     show = true;

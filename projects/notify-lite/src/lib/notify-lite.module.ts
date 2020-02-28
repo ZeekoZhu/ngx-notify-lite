@@ -29,7 +29,7 @@ export class NotifyLiteModule {
         }
     }
 
-    static forRoot(config?: Partial<NotificationConfig>): ModuleWithProviders {
+    static forRoot(config?: Partial<NotificationConfig>): ModuleWithProviders<NotifyLiteModule> {
         return {
             ngModule: NotifyLiteModule,
             providers: [

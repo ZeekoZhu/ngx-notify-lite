@@ -15,7 +15,12 @@
                         "tsConfig": "projects/notify-lite/tsconfig.lib.json",
                         "project": "projects/notify-lite/ng-package.json"
                     }
-                },
+                ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/notify-lite/tsconfig.lib.prod.json"
+            }
+          }
+},
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
@@ -55,7 +60,7 @@
                         "main": "projects/playground/src/main.ts",
                         "polyfills": "projects/playground/src/polyfills.ts",
                         "tsConfig": "projects/playground/tsconfig.app.json",
-                        "aot": false,
+                        "aot": true,
                         "assets": [
                             "projects/playground/src/favicon.ico",
                             "projects/playground/src/assets"
@@ -78,7 +83,6 @@
                             "sourceMap": false,
                             "extractCss": true,
                             "namedChunks": false,
-                            "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
@@ -87,7 +91,11 @@
                                     "type": "initial",
                                     "maximumWarning": "2mb",
                                     "maximumError": "5mb"
-                                }
+                                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
                             ]
                         }
                     }

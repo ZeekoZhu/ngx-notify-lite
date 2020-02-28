@@ -1059,10 +1059,15 @@
   resolved "https://registry.npm.taobao.org/@types/minimatch/download/@types/minimatch-3.0.3.tgz?cache=0&sync_timestamp=1572464707542&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fminimatch%2Fdownload%2F%40types%2Fminimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha1-PcoOPzOyAPx9ETnAzZbBJoyt/Z0=
 
-"@types/node@*", "@types/node@~13.1.7":
+"@types/node@*":
   version "13.1.8"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.1.8.tgz#1d590429fe8187a02707720ecf38a6fe46ce294b"
   integrity sha1-HVkEKf6Bh6AnB3IOzzim/kbOKUs=
+
+"@types/node@^12.11.1":
+  version "12.12.28"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.28.tgz#3a2b5f8d21f96ace690a8832ae9779114612575f"
+  integrity sha512-g73GJYJDXgf0jqg+P9S8h2acWbDXNkoCX8DLtJVu7Fkn788pzQ/oJsrdJz/2JejRf/SjfZaAhsw+3nd1D5EWGg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -2343,10 +2348,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.npm.taobao.org/code-point-at/download/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codelyzer@^5.2.1:
+codelyzer@^5.1.2:
   version "5.2.1"
-  resolved "https://registry.npm.taobao.org/codelyzer/download/codelyzer-5.2.1.tgz#44fd431e128009f38c761828c33ebacba9549d32"
-  integrity sha1-RP1DHhKACfOMdhgowz66y6lUnTI=
+  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-5.2.1.tgz#44fd431e128009f38c761828c33ebacba9549d32"
+  integrity sha512-awBZXFcJUyC5HMYXiHzjr3D24tww2l1D1OqtfA9vUhEtYr32a65A+Gblm/OvsO+HuKLYzn8EDMw1inSM3VbxWA==
   dependencies:
     app-root-path "^2.2.1"
     aria-query "^3.0.0"
@@ -5818,7 +5823,7 @@ ng-mocks@^8.1.0:
   resolved "https://registry.npm.taobao.org/ng-mocks/download/ng-mocks-8.1.0.tgz#d00a5e53ae53587f35c68147826590fab71a1658"
   integrity sha1-0ApeU65TWH81xoFHgmWQ+rcaFlg=
 
-ng-packagr@^9.0.2:
+ng-packagr@^9.0.0:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-9.0.2.tgz#91f990376c3d5b101f28de439019ce4b1223cdd4"
   integrity sha512-y26P9YeptkIov+yUhpyOVeZm7I2b3Z9GGL5gbm3Pi43L7P0UfJfJU1qLqA+puFRDQepKOPEAy930UF7+wMeo6g==
@@ -8577,11 +8582,6 @@ ts-node@~8.6.2:
     make-error "^1.1.1"
     source-map-support "^0.5.6"
     yn "3.1.1"
-
-tsickle@^0.38.0:
-  version "0.38.0"
-  resolved "https://registry.npm.taobao.org/tsickle/download/tsickle-0.38.0.tgz#89f5952c9bb3ba0b36dc384975e23cf90e584822"
-  integrity sha1-ifWVLJuzugs23DhJdeI8+Q5YSCI=
 
 tslib@1.10.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
